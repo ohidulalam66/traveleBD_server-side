@@ -79,8 +79,3 @@ app.get('/', (req, res) => {
 app.listen(port, () => {
     console.log("Travele BD server port", port);
 })
-
-/*
-USER_DB=traveleBD
-USER_PASS=vIZaMeJk4Sgf6lQn
-*/
