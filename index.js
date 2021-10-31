@@ -18,22 +18,29 @@ async function run() {
     try {
         await client.connect();
         const database = client.db('travele_BD');
-        const serviceCollection = database.collection('services');
+        const servicesCollection = database.collection('services');
         const ordersCollection = database.collection('orders');
 
 
-        // Get services API 
+        // GET services API 
         app.get('/services', async (req, res) => {
-            const cursor = serviceCollection.find({});
+            const cursor = servicesCollection.find({});
             const services = await cursor.toArray();
             res.send(services);
         });
+
+        // POST Add Service
+        app.post('/services', async (req, res) => {
+            const service = req.body;
+            const result = await servicesCollection.insertOne(service);
+            res.json(result);
+        })
 
         // GET Single Service
         app.get('/services/:id', async (req, res) => {
             const id = req.params.id;
             const query = { _id: ObjectId(id) };
-            const service = await serviceCollection.findOne(query);
+            const service = await servicesCollection.findOne(query);
             res.json(service);
         });
 
