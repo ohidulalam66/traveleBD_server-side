@@ -4,7 +4,7 @@ const cors = require("cors");
 const { MongoClient } = require('mongodb');
 require('dotenv').config();
 const ObjectId = require('mongodb').ObjectId;
-const port = process.env.PORT | 5000;
+const port = process.env.PORT || 5000;
 
 // middleware
 app.use(cors());
